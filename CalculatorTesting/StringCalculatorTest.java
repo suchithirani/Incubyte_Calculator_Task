@@ -6,9 +6,10 @@ import static org.junit.Assert.assertEquals;
 
 public class StringCalculatorTest {
 
+
     @Test
-    public void testAddSingleNumber() {
+    public void testAddTwoNumbers() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(15, calc.add("15"));
+        assertEquals(147, calc.add("69,78"));
     }
 }

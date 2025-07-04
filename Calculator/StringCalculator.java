@@ -3,12 +3,15 @@ package Calculator;
 public class StringCalculator {
 
     public int add(String numbers){
-        if (!numbers.contains(",")) {
-            return Integer.parseInt(numbers.trim());
+
+        String[] parts = numbers.split(",");
+
+        int sum = 0;
+        for (String part : parts) {
+            sum += Integer.parseInt(part.trim());
         }
 
-        // For future use (like two numbers)
-        return -1;
+        return sum;
     }
 
 }
