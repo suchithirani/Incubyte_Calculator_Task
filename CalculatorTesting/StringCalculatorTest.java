@@ -8,8 +8,9 @@ public class StringCalculatorTest {
 
 
     @Test
-    public void testAddTwoNumbers() {
+    public void testAddNumbersWithNewlinesAndCommas() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(147, calc.add("69,78"));
+        assertEquals(1719, calc.add("105\n56,3,97\n5,890\n563"));
     }
+
 }
