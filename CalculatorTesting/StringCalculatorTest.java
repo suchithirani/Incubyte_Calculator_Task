@@ -8,17 +8,9 @@ public class StringCalculatorTest {
 
 
     @Test
-    public void testAddNumbersWithCalledCounter() {
+    public void testAddNumbersGreaterThanThousandIgnore() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(0, calc.getCalledCount());
-
-        // After 1 call
-        calc.add("15,78");
-        assertEquals(1, calc.getCalledCount());
-
-        // After 2nd call
-        calc.add("89");
-        assertEquals(2, calc.getCalledCount());
+        assertEquals(45, calc.add("1986,45"));
     }
 
 }
