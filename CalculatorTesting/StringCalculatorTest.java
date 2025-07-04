@@ -10,7 +10,7 @@ public class StringCalculatorTest {
     @Test
     public void testAddNumbersWithNewlinesAndCommas() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(1719, calc.add("105\n56,3,97\n5,890\n563"));
+        assertEquals(256, calc.add("//$\n98$70$56\n$32"));
     }
 
 }
