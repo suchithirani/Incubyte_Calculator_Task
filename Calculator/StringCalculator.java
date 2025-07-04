@@ -6,10 +6,20 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+
+    private int callCount = 0;
     public int add(String numbers) {
+        callCount++;
         if (numbers == null || numbers.isEmpty()) {
             return 0;
         }
+
+
+
+
+
+
+
 
         String delimiter = ",|\n";
 
@@ -38,6 +48,9 @@ public class StringCalculator {
         }
 
         return sum;
+    }
+    public int getCalledCount() {
+        return callCount;
     }
 
 }

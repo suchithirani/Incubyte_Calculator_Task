@@ -8,9 +8,17 @@ public class StringCalculatorTest {
 
 
     @Test
-    public void testAddNumbersWithNewlinesAndCommas() {
+    public void testAddNumbersWithCalledCounter() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(256, calc.add("-23,56"));
+        assertEquals(0, calc.getCalledCount());
+
+        // After 1 call
+        calc.add("15,78");
+        assertEquals(1, calc.getCalledCount());
+
+        // After 2nd call
+        calc.add("89");
+        assertEquals(2, calc.getCalledCount());
     }
 
 }
