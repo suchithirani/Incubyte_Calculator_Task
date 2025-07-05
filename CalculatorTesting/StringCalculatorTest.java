@@ -8,9 +8,11 @@ public class StringCalculatorTest {
 
 
     @Test
-    public void testAddNumbersGreaterThanThousandIgnore() {
+    public void testDelimiterOfAnyLength() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(45, calc.add("1986,45"));
+        assertEquals(383, calc.add("//[@#&]\n98@#&82@#&203"));
+        assertEquals(990, calc.add("//[petra]\n89petra901petra2398"));
     }
+
 
 }

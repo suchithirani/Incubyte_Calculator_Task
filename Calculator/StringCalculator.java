@@ -6,36 +6,37 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-
-    private int callCount = 0;
+    int callCount=0;
     public int add(String numbers) {
         callCount++;
+
         if (numbers == null || numbers.isEmpty()) {
             return 0;
         }
 
-
-
-
-
-
-
-
         String delimiter = ",|\n";
 
+        // custom delimiter: //[delimiter]\n
         if (numbers.startsWith("//")) {
             int newlineIndex = numbers.indexOf("\n");
-            delimiter = Pattern.quote(numbers.substring(2, newlineIndex));
+
+            String delimiterSection = numbers.substring(2, newlineIndex);
+            if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
+                delimiter = Pattern.quote(delimiterSection.substring(1, delimiterSection.length() - 1));
+            } else {
+                delimiter = Pattern.quote(delimiterSection); // support single-char delimiters too
+            }
+
             numbers = numbers.substring(newlineIndex + 1);
         }
 
         String[] parts = numbers.split(delimiter);
-
         int sum = 0;
         List<Integer> negatives = new ArrayList<>();
 
         for (String part : parts) {
             int num = Integer.parseInt(part.trim());
+
             if (num < 0) {
                 negatives.add(num);
             } else if (num <= 1000) {
@@ -49,8 +50,6 @@ public class StringCalculator {
 
         return sum;
     }
-    public int getCalledCount() {
-        return callCount;
-    }
+
 
 }
