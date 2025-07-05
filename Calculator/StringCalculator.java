@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     int callCount=0;
+
     public int add(String numbers) {
         callCount++;
 
@@ -23,15 +24,15 @@ public class StringCalculator {
 
             List<String> delimiters = new ArrayList<>();
 
-
+            // Case 1: Multiple delimiters like //[***][%%]
             if (delimiterSection.startsWith("[") && delimiterSection.contains("]")) {
                 Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(delimiterSection);
                 while (matcher.find()) {
-                    delimiters.add(Pattern.quote(matcher.group(1)));//Case 1: Multiple delimiters like //[***][%%]
+                    delimiters.add(Pattern.quote(matcher.group(1)));
                 }
             } else {
-
-                delimiters.add(Pattern.quote(delimiterSection)); // Case 2: Single-char delimiter like //;\n
+                // Case 2: Single-char delimiter like //;\n
+                delimiters.add(Pattern.quote(delimiterSection));
             }
 
             delimiterRegex = String.join("|", delimiters);
@@ -59,6 +60,7 @@ public class StringCalculator {
         return sum;
     }
 
-
-
+    public int getCalledCount() {
+        return callCount;
+    }
 }
