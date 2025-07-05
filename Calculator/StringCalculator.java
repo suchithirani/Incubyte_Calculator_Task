@@ -2,6 +2,7 @@ package Calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -14,23 +15,30 @@ public class StringCalculator {
             return 0;
         }
 
-        String delimiter = ",|\n";
+        String delimiterRegex = ",|\n"; // default
 
-        // custom delimiter: //[delimiter]\n
         if (numbers.startsWith("//")) {
             int newlineIndex = numbers.indexOf("\n");
-
             String delimiterSection = numbers.substring(2, newlineIndex);
-            if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
-                delimiter = Pattern.quote(delimiterSection.substring(1, delimiterSection.length() - 1));
+
+            List<String> delimiters = new ArrayList<>();
+
+
+            if (delimiterSection.startsWith("[") && delimiterSection.contains("]")) {
+                Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(delimiterSection);
+                while (matcher.find()) {
+                    delimiters.add(Pattern.quote(matcher.group(1)));//Case 1: Multiple delimiters like //[***][%%]
+                }
             } else {
-                delimiter = Pattern.quote(delimiterSection); // support single-char delimiters too
+
+                delimiters.add(Pattern.quote(delimiterSection)); // Case 2: Single-char delimiter like //;\n
             }
 
+            delimiterRegex = String.join("|", delimiters);
             numbers = numbers.substring(newlineIndex + 1);
         }
 
-        String[] parts = numbers.split(delimiter);
+        String[] parts = numbers.split(delimiterRegex);
         int sum = 0;
         List<Integer> negatives = new ArrayList<>();
 
@@ -50,6 +58,7 @@ public class StringCalculator {
 
         return sum;
     }
+
 
 
 }

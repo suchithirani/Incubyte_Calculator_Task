@@ -10,8 +10,9 @@ public class StringCalculatorTest {
     @Test
     public void testDelimiterOfAnyLength() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(383, calc.add("//[@#&]\n98@#&82@#&203"));
-        assertEquals(990, calc.add("//[petra]\n89petra901petra2398"));
+        assertEquals(400, calc.add("//[@][)]\n321@23)56"));
+        assertEquals(907, calc.add("//[^^][&&&]\n34^^87&&&786"));
+        assertEquals(162, calc.add("//[--][::][!@]\n76--54::2322!@32"));
     }
 
 
